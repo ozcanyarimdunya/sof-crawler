@@ -14,6 +14,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DB_PATH = os.path.join(BASE_DIR, 'data')
+if not os.path.exists(DB_PATH):
+    os.mkdir(DB_PATH)
+
 DB_NAME = 'sof.db'
 DB_URL = 'sqlite:///{path}/{name}'.format(path=DB_PATH, name=DB_NAME)
 
