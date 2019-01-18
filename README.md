@@ -2,7 +2,7 @@
 
 A Crawler for stackoverflow.com latest question by tag 
 
-#### How to run locally
+#### Run locally
 
 1. Clone the repository
     
@@ -15,7 +15,7 @@ A Crawler for stackoverflow.com latest question by tag
     `scrapy crawl sof`
 
 
-### How to run with docker
+#### Run with docker
 
 1. Clone the repository
 
@@ -23,4 +23,4 @@ A Crawler for stackoverflow.com latest question by tag
 
     `docker-compose up -d --build`
 
-After this processes latest 50 questions will be inserted to sof.db database.
+After this processes latest 50 questions will be inserted to **sof.db** database file.
