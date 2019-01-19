@@ -1,6 +1,6 @@
 ## Sof crawler
 
-A Crawler for stackoverflow.com latest question by tag 
+A Crawler for stackoverflow.com's latest 5000 questions by tag 
 
 #### Run locally
 
@@ -23,4 +23,4 @@ A Crawler for stackoverflow.com latest question by tag
 
     `docker-compose up -d --build`
 
-After this processes latest 50 questions will be inserted to **sof.db** database file.
+After this processes latest 5000 questions will be inserted to **sof.db** database file.
