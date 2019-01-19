@@ -8,18 +8,15 @@ class SofSpider(scrapy.Spider):
     start_urls = [
         "https://stackoverflow.com/questions/tagged/python"
     ]
-
-    def start_requests(self):
-        for url in self.start_urls:
-            yield scrapy.Request(url=url, callback=lambda response: self.parse(response))
+    total = 1
 
     def parse(self, response):
-        change = scrapy.Selector(response).xpath(
+        question_list = scrapy.Selector(response).xpath(
             '//*[@class="question-summary"]'
         )
 
         item = SofItem()
-        for question in change:
+        for question in question_list:
             item['title'] = question.xpath(
                 './/div[@class="summary"]/h3/a/text()').re_first(r'\w.*')
 
@@ -42,3 +39,12 @@ class SofSpider(scrapy.Spider):
                 './/div[contains(@class,"user-details")]/a/text()').re_first(r'\w.*')
 
             yield item
+
+        next_page = scrapy.Selector(response).xpath(
+            './/a[@rel="next"]/@href'
+        ).re_first(r'\w.*')
+
+        if next_page and self.total < 100:
+            self.total = self.total + 1
+            next_page_url = 'https://stackoverflow.com/' + next_page
+            yield scrapy.Request(url=next_page_url)
